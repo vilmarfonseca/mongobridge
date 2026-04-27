@@ -1,0 +1,5 @@
+# One collection name per line (optional — use across projects with --file)
+# Example list from the original cruise scripts:
+# users
+# projects
+# system

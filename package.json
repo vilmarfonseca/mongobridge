@@ -1,0 +1,44 @@
+{
+  "name": "mongobridge",
+  "version": "0.1.0",
+  "description": "Cross-environment MongoDB sync CLI: pull, push, export, import, and drop between Atlas (or any remote) and a local database. Wraps mongodump, mongorestore, and mongosh.",
+  "bin": {
+    "mongobridge": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    ".env.example",
+    "collections.example.txt"
+  ],
+  "scripts": {
+    "build": "tsc && chmod +x dist/cli.js",
+    "prepare": "npm run build",
+    "start": "node dist/cli.js",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "mongodb",
+    "atlas",
+    "mongodump",
+    "mongorestore",
+    "mongosh",
+    "cli",
+    "backup",
+    "restore",
+    "sync",
+    "migration"
+  ],
+  "author": "Vilmar Fonseca <vilmarfonsec@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  }
+}
