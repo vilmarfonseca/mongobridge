@@ -16,6 +16,7 @@ Commands (first argument must be profile:command):
   mongodb+srv:// URI, pick any placeholder profile and override with --from or --to (see examples).
 
 Global options:
+  -v, --version          Show current mongobridge version
   --from <profile|uri>   Override source (pull/export/drop)
   --to <profile|uri>     Override target (push/import)
   --uri <uri>            Same as --from for export / --to for import / connection for drop
