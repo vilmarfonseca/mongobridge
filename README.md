@@ -82,6 +82,7 @@ The profile in **`profile:command`** must be a single token without `:` (so it c
 
 ```bash
 mongobridge --help
+mongobridge --version
 ```
 
 ### Command reference
@@ -150,6 +151,7 @@ For **`export`**, **`import`**, and **`drop`**, **`--uri <uri>`** sets the conne
 
 | Option | Meaning |
 |--------|---------|
+| `-v` / `--version` | Print the current `mongobridge` version and exit |
 | `--from` / `--to` | Override source/target; profile name or full MongoDB URI |
 | `--uri` | URI for export (→ `--from`), import (→ `--to`), or drop |
 | `--all` | Whole database (default when not scoped; use to force full DB if needed) |
@@ -167,6 +169,9 @@ For **`export`**, **`import`**, and **`drop`**, **`--uri <uri>`** sets the conne
 Ensure **`MONGOBRIDGE_DB`** matches the database you want (e.g. `shop`).
 
 ```bash
+# Show installed mongobridge version
+mongobridge -v
+
 mongobridge production:pull
 mongobridge production:export --out ~/mongo-backups
 mongobridge local:import ~/mongo-backups/mongodb_exports_20260109_153045_shop_production
