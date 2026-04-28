@@ -1,6 +1,6 @@
 {
   "name": "mongobridge",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Cross-environment MongoDB sync CLI: pull, push, export, import, and drop between Atlas (or any remote) and a local database. Wraps mongodump, mongorestore, and mongosh.",
   "bin": {
     "mongobridge": "dist/cli.js"
