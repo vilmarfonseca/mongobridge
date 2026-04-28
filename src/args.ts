@@ -5,6 +5,7 @@ import { readCollectionsFile, expandCollections } from "./collections";
 import { usage } from "./usage";
 
 const VALID_CMDS = /^([^:]+):(pull|push|export|import|drop)$/;
+const GENERATE_ENV_CMD = "generate:env";
 
 export function parseArgs(argv: string[]): Options {
   if (argv.length === 0) {
@@ -16,10 +17,35 @@ export function parseArgs(argv: string[]): Options {
     process.exit(0);
   }
 
+  if (argv[0] === GENERATE_ENV_CMD) {
+    if (argv.length > 1) {
+      console.error(`Unexpected argument(s): ${argv.slice(1).join(" ")}`);
+      process.exit(1);
+    }
+    return {
+      cmd: "generate:env",
+      from: undefined,
+      to: undefined,
+      uri: undefined,
+      collectionArgs: [],
+      collectionsFile: undefined,
+      exportAll: false,
+      withVersions: false,
+      skipConfirm: false,
+      outDir: undefined,
+      dumpMode: false,
+      dropBefore: false,
+      dumpDir: undefined,
+      db: "",
+      collections: [],
+      tag: "generate-env",
+    };
+  }
+
   const m = argv[0].match(VALID_CMDS);
   if (!m) {
     console.error(
-      `Unknown: ${argv[0]} (expected <profile>:pull|push|export|import|drop)`,
+      `Unknown: ${argv[0]} (expected <profile>:pull|push|export|import|drop or generate:env)`,
     );
     usage();
     process.exit(1);
@@ -208,6 +234,8 @@ function defaultsForCmd(
       return { to: profile };
     case "drop":
       return { from: profile };
+    case "generate:env":
+      return {};
   }
 }
 
@@ -234,6 +262,8 @@ function applyUriOverride(
         "Error: use --from and --to with push (or set defaults via env).",
       );
       process.exit(1);
+    case "generate:env":
+      return { from, to };
   }
 }
 

@@ -1,4 +1,10 @@
-export type Cmd = "pull" | "push" | "export" | "import" | "drop";
+export type Cmd =
+  | "pull"
+  | "push"
+  | "export"
+  | "import"
+  | "drop"
+  | "generate:env";
 
 export interface Options {
   cmd: Cmd;

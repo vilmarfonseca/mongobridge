@@ -10,6 +10,7 @@ Commands (first argument must be profile:command):
   <profile>:import <dump-dir>
                           Restore INTO profile (whole dump unless scoped)
   <profile>:drop          Drop collections ON profile (requires -c / --collections / --file)
+  generate:env            Create .env.mongobridge template in current folder
 
   <profile> is a name from your env (production, staging, atlas, local, …). To use a raw mongodb:// or
   mongodb+srv:// URI, pick any placeholder profile and override with --from or --to (see examples).

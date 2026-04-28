@@ -2,7 +2,7 @@
 
 A small Node.js CLI to **export**, **import**, **pull**, and **push** MongoDB data between Atlas (or any remote) and a local database. It wraps `mongodump`, `mongorestore`, and `mongosh` so you can sync a database or a subset of collections without writing one-off scripts.
 
-The first argument is always **profile:command** (for example `production:pull`). The **database name** is configured with **`MONGOBRIDGE_DB`** in your `.env` (or shell environment), not on the command line.
+The first argument is usually **profile:command** (for example `production:pull`). The **database name** is configured with **`MONGOBRIDGE_DB`** in your `.env` (or shell environment), not on the command line.
 
 ## Install
 
@@ -93,6 +93,7 @@ mongobridge --help
 | **`<profile>:export`** | Dump **from** `profile` to disk |
 | **`<profile>:import <dump-dir>`** | Restore **into** `profile` (positional: parent of the DB folder from `mongodump`) |
 | **`<profile>:drop`** | Drop collections **on** `profile` (requires **`-c`**, **`--collections`**, or **`--file`**) |
+| **`generate:env`** | Create a `.env.mongobridge` template in the current folder |
 
 For **`pull`**, **`push`**, **`export`**, and **`import`**, the default is **the whole database** unless you narrow with **`-c`**, **`--collections`**, or **`--file`**. Use **`--all`** to force a full run when you have also passed collection flags in a way that would otherwise narrow scope (rare).
 
@@ -105,6 +106,9 @@ Set **`MONGOBRIDGE_DB`** in `.env` to your app database name (e.g. `shop`).
 - **`pull`** / **`push`** stream through a temp directory and clean up; use **`export`** if you want a saved folder (e.g. at the project root).
 
 ```bash
+# Generate an env template in the current directory
+mongobridge generate:env
+
 # Production → local (full database, drops local collections first)
 mongobridge production:pull
 
