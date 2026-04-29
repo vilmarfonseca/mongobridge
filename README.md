@@ -42,15 +42,14 @@ mongosh --version
 
 ### Environment file
 
-`mongobridge` loads the first `.env` it finds by walking **up from your current working directory** (useful when you run it inside an app repo). If none is found, it falls back to **`~/.mongobridge.env`**.
+`mongobridge` looks for `.env.mongobridge` first while walking **up from your current working directory** (useful when you run it inside an app repo). If not found, it falls back to `.env` using the same upward lookup. If neither file exists, it falls back to **`~/.mongobridge.env`**.
 
 To set it up the first time:
 
 ```bash
-# from anywhere — fetch the example into a project
-curl -O https://raw.githubusercontent.com/vilmarfonseca/mongobridge/main/.env.example
-mv .env.example .env
-# then edit .env
+# create a project-local template (also adds it to .gitignore if present)
+mongobridge generate:env
+# then edit .env.mongobridge
 ```
 
 Never commit `.env`; it usually contains secrets.

@@ -8,9 +8,14 @@ const MAX_PARENT_HOPS = 6;
 export function loadDotenv(): void {
   let dir = process.cwd();
   for (let i = 0; i < MAX_PARENT_HOPS; i++) {
-    const candidate = path.join(dir, ".env");
-    if (fs.existsSync(candidate)) {
-      dotenv.config({ path: candidate });
+    const preferred = path.join(dir, ".env.mongobridge");
+    if (fs.existsSync(preferred)) {
+      dotenv.config({ path: preferred });
+      return;
+    }
+    const fallback = path.join(dir, ".env");
+    if (fs.existsSync(fallback)) {
+      dotenv.config({ path: fallback });
       return;
     }
     const parent = path.dirname(dir);
